@@ -18,7 +18,7 @@ import flixel.tweens.FlxTween;
 import flixel.util.FlxSort;
 #if MODS_ALLOWED
 import sys.io.File;
-import sys.Util;
+import sys.FileSystem;
 #end
 import openfl.utils.AssetType;
 import openfl.utils.Assets;
