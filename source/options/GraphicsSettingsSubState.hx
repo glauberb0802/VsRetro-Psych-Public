@@ -88,7 +88,7 @@ class GraphicsSettingsSubState extends BaseOptionsMenu
 			'If unchecked, disables lighting effects.',
 			'wrathShader',
 			'bool',
-			true);
+			false);
 		option.id = "wrathShader";
 		option.showBoyfriend = true;
 		option.onSelect = onChangeShaders; //Changing onChange is only needed if you want to make a special interaction after it changes the value
