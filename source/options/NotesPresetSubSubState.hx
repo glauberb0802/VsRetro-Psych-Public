@@ -193,6 +193,11 @@ class NotesPresetSubSubState extends MusicBeatSubstate
 		}
 
 		changeSelection();
+
+		#if mobile
+		addVirtualPad(LEFT_FULL, A_B);
+    addVirtualPadCamera();
+		#end
 	}
 
 	var changingNote:Bool = false;

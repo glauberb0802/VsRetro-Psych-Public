@@ -78,7 +78,7 @@ class GraphicsSettingsSubState extends BaseOptionsMenu
 			'Disables all shaders if unchecked.',
 			'shaders',
 			'bool',
-			true);
+			false);
 		option.showBoyfriend = true;
 		option.onSelect = onChangeShaders; //Changing onChange is only needed if you want to make a special interaction after it changes the value
 		option.onChange = onChangeShaders; //Changing onChange is only needed if you want to make a special interaction after it changes the value
@@ -111,7 +111,7 @@ class GraphicsSettingsSubState extends BaseOptionsMenu
 			'Reduces GPU usage on specific GPUs.',
 			'wrathExperimental',
 			'bool',
-			true);
+			false);
 		option.showBoyfriend = true;
 		option.onSelect = onChangeShaders; //Changing onChange is only needed if you want to make a special interaction after it changes the value
 		option.onChange = onChangeShaders; //Changing onChange is only needed if you want to make a special interaction after it changes the value
@@ -132,7 +132,7 @@ class GraphicsSettingsSubState extends BaseOptionsMenu
 			'If checked, fully disables shaders affecting notes.',
 			'optimizedNotes',
 			'bool',
-			false);
+			true);
 		//option.id = "chromatic";
 		addOption(option);
 

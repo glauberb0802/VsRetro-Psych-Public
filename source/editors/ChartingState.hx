@@ -536,7 +536,7 @@ class ChartingState extends MusicBeatState
 			if(Util.exists(directory)) {
 				for (file in Util.readDirectory(directory)) {
 					var path = haxe.io.Path.join([directory, file]);
-					if (!Util.isDirectory(path) && file.endsWith('.json')) {
+					if (!FileSystem.isDirectory(path) && file.endsWith('.json')) {
 						var charToCheck:String = file.substr(0, file.length - 5);
 						if(!charToCheck.endsWith('-dead') && !tempMap.exists(charToCheck)) {
 							tempMap.set(charToCheck, true);
@@ -597,7 +597,7 @@ class ChartingState extends MusicBeatState
 			if(Util.exists(directory)) {
 				for (file in Util.readDirectory(directory)) {
 					var path = haxe.io.Path.join([directory, file]);
-					if (!Util.isDirectory(path) && file.endsWith('.json')) {
+					if (!FileSystem.isDirectory(path) && file.endsWith('.json')) {
 						var stageToCheck:String = file.substr(0, file.length - 5);
 						if(!tempMap.exists(stageToCheck)) {
 							tempMap.set(stageToCheck, true);
@@ -960,7 +960,7 @@ class ChartingState extends MusicBeatState
 			if(Util.exists(directory)) {
 				for (file in Util.readDirectory(directory)) {
 					var path = haxe.io.Path.join([directory, file]);
-					if (!Util.isDirectory(path) && file.endsWith('.lua')) {
+					if (!FileSystem.isDirectory(path) && file.endsWith('.lua')) {
 						var fileToCheck:String = file.substr(0, file.length - 4);
 						if(!noteTypeMap.exists(fileToCheck)) {
 							displayNameList.push(fileToCheck);
@@ -1014,7 +1014,7 @@ class ChartingState extends MusicBeatState
 			if(Util.exists(directory)) {
 				for (file in Util.readDirectory(directory)) {
 					var path = haxe.io.Path.join([directory, file]);
-					if (!Util.isDirectory(path) && file != 'readme.txt' && file.endsWith('.txt')) {
+					if (!FileSystem.isDirectory(path) && file != 'readme.txt' && file.endsWith('.txt')) {
 						var fileToCheck:String = file.substr(0, file.length - 4);
 						if(!eventPushedMap.exists(fileToCheck)) {
 							eventPushedMap.set(fileToCheck, true);

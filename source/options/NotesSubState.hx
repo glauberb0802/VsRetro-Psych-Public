@@ -240,7 +240,12 @@ class NotesSubState extends MusicBeatSubstate
 			}
 		}
 
-		changeSelection();
+		changeSelection()
+		
+    #if mobile
+    addVirtualPad(LEFT_RIGHT, A_B);
+    addVirtualPadCamera();
+    #end
 	}
 
 	var changingNote:Bool = false;
