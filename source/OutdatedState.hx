@@ -207,7 +207,7 @@ Thank you for playing!\n
 		}
 
 		if(!leftState) {
-			if (controls.ACCEPT || controls.BACK) {
+			if (controls.ACCEPT || controls.BACK #if mobile || FlxG.android.justReleased.BACK #end) {
 				leftState = true;
 				if(controls.ACCEPT)
 					CoolUtil.browserLoad(hscript.variables.get('acceptLink'));

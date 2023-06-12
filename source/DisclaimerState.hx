@@ -171,6 +171,10 @@ class DisclaimerState extends FlxState {
 			state = Flashing;
 		}
 
+    #if mobile
+    addVirtualPad(LEFT_RIGHT, A)
+    #end
+
 		super.create();
 	}
 

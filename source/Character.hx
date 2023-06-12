@@ -18,7 +18,7 @@ import flixel.tweens.FlxTween;
 import flixel.util.FlxSort;
 #if MODS_ALLOWED
 import sys.io.File;
-import sys.FileSystem;
+import sys.Util;
 #end
 import openfl.utils.AssetType;
 import openfl.utils.Assets;
@@ -135,11 +135,11 @@ class Character extends FlxSprite
 
 		#if MODS_ALLOWED
 		var path:String = Paths.modFolders(characterPath);
-		if (!FileSystem.exists(path)) {
+		if (!Util.exists(path)) {
 			path = Paths.getPreloadPath(characterPath);
 		}
 
-		if (!FileSystem.exists(path))
+		if (!Util.exists(path))
 		#else
 		var path:String = Paths.getPreloadPath(characterPath);
 		if (!Assets.exists(path))
@@ -175,11 +175,11 @@ class Character extends FlxSprite
 
 				#if MODS_ALLOWED
 				var path:String = Paths.modFolders(characterPath);
-				if (!FileSystem.exists(path)) {
+				if (!Util.exists(path)) {
 					path = Paths.getPreloadPath(characterPath);
 				}
 
-				if (!FileSystem.exists(path))
+				if (!Util.exists(path))
 				#else
 				var path:String = Paths.getPreloadPath(characterPath);
 				if (!Assets.exists(path))
@@ -189,7 +189,7 @@ class Character extends FlxSprite
 				}
 
 				#if MODS_ALLOWED
-				var rawJson = File.getContent(path);
+				var rawJson = Util.getContent(path);
 				#else
 				var rawJson = Assets.getText(path);
 				#end
@@ -416,7 +416,7 @@ class Character extends FlxSprite
 		var modTxtToFind:String = Paths.modsTxt(imageName);
 		var txtToFind:String = Paths.getPath('images/' + imageName + '.txt', TEXT);
 
-		if (FileSystem.exists(modTxtToFind) || FileSystem.exists(txtToFind) || Assets.exists(txtToFind))
+		if (Util.exists(modTxtToFind) || Util.exists(txtToFind) || Assets.exists(txtToFind))
 		#else
 		if (Assets.exists(Paths.getPath('images/' + imageName + '.txt', TEXT)))
 		#end
@@ -428,7 +428,7 @@ class Character extends FlxSprite
 		var modAnimToFind:String = Paths.modFolders('images/' + imageName + '/Animation.json');
 		var animToFind:String = Paths.getPath('images/' + imageName + '/Animation.json', TEXT);
 
-		if (FileSystem.exists(modAnimToFind) || FileSystem.exists(animToFind) || Assets.exists(animToFind))
+		if (Util.exists(modAnimToFind) || Util.exists(animToFind) || Assets.exists(animToFind))
 		#else
 		if (Assets.exists(Paths.getPath('images/' + imageName + '/Animation.json', TEXT)))
 		#end

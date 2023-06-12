@@ -765,9 +765,9 @@ class PlayState extends MusicBeatState
 
 		for (folder in foldersToCheck)
 		{
-			if(FileSystem.exists(folder))
+			if(Util.exists(folder))
 			{
-				for (file in FileSystem.readDirectory(folder))
+				for (file in Util.readDirectory(folder))
 				{
 					if(file.endsWith('.lua') && !filesPushed.contains(file) && !ClientPrefs.optimize)
 					{
@@ -783,12 +783,12 @@ class PlayState extends MusicBeatState
 		#if (MODS_ALLOWED && LUA_ALLOWED)
 		var doPush:Bool = false;
 		var luaFile:String = 'stages/' + curStage + '.lua';
-		if(FileSystem.exists(Paths.modFolders(luaFile))) {
+		if(Util.exists(Paths.modFolders(luaFile))) {
 			luaFile = Paths.modFolders(luaFile);
 			doPush = true;
 		} else {
 			luaFile = Paths.getPreloadPath(luaFile);
-			if(FileSystem.exists(luaFile)) {
+			if(Util.exists(luaFile)) {
 				doPush = true;
 			}
 		}
@@ -1152,14 +1152,14 @@ class PlayState extends MusicBeatState
 		for (notetype in noteTypeMap.keys())
 		{
 			var luaToLoad:String = Paths.modFolders('custom_notetypes/' + notetype + '.lua');
-			if(FileSystem.exists(luaToLoad))
+			if(Util.exists(luaToLoad))
 			{
 				luaArray.push(new FunkinLua(luaToLoad));
 			}
 			else
 			{
 				luaToLoad = Paths.getPreloadPath('custom_notetypes/' + notetype + '.lua');
-				if(FileSystem.exists(luaToLoad))
+				if(Util.exists(luaToLoad))
 				{
 					luaArray.push(new FunkinLua(luaToLoad));
 				}
@@ -1168,14 +1168,14 @@ class PlayState extends MusicBeatState
 		for (event in eventPushedMap.keys())
 		{
 			var luaToLoad:String = Paths.modFolders('custom_events/' + event + '.lua');
-			if(FileSystem.exists(luaToLoad))
+			if(Util.exists(luaToLoad))
 			{
 				luaArray.push(new FunkinLua(luaToLoad));
 			}
 			else
 			{
 				luaToLoad = Paths.getPreloadPath('custom_events/' + event + '.lua');
-				if(FileSystem.exists(luaToLoad))
+				if(Util.exists(luaToLoad))
 				{
 					luaArray.push(new FunkinLua(luaToLoad));
 				}
@@ -1277,6 +1277,12 @@ class PlayState extends MusicBeatState
 		timeBar.cameras = [camHUD];
 		timeBarBG.cameras = [camHUD];
 		timeTxt.cameras = [camHUD];
+		
+		#if mobile
+		addMobileControls(false);
+    mobileControls.visible = false;
+		#end
+		
 		//if(!doof.noDialogue) doof.cameras = [camHUD];
 
 		startingSong = true;
@@ -1294,9 +1300,9 @@ class PlayState extends MusicBeatState
 
 		for (folder in foldersToCheck)
 		{
-			if(FileSystem.exists(folder))
+			if(Util.exists(folder))
 			{
-				for (file in FileSystem.readDirectory(folder))
+				for (file in Util.readDirectory(folder))
 				{
 					if(file.endsWith('.lua') && !filesPushed.contains(file) && !ClientPrefs.optimize)
 					{
@@ -1734,12 +1740,12 @@ class PlayState extends MusicBeatState
 		#if LUA_ALLOWED
 		var doPush:Bool = false;
 		var luaFile:String = 'characters/' + name + '.lua';
-		if(FileSystem.exists(Paths.modFolders(luaFile))) {
+		if(Util.exists(Paths.modFolders(luaFile))) {
 			luaFile = Paths.modFolders(luaFile);
 			doPush = true;
 		} else {
 			luaFile = Paths.getPreloadPath(luaFile);
-			if(FileSystem.exists(luaFile)) {
+			if(Util.exists(luaFile)) {
 				doPush = true;
 			}
 		}
@@ -1770,7 +1776,7 @@ class PlayState extends MusicBeatState
 		var foundFile:Bool = false;
 		var fileName:String = #if MODS_ALLOWED Paths.modFolders('videos/' + name + '.' + Paths.VIDEO_EXT); #else ''; #end
 		#if sys
-		if(FileSystem.exists(fileName)) {
+		if(Util.exists(fileName)) {
 			foundFile = true;
 		}
 		#end
@@ -1778,7 +1784,7 @@ class PlayState extends MusicBeatState
 		if(!foundFile) {
 			fileName = Paths.video(name);
 			#if sys
-			if(FileSystem.exists(fileName))
+			if(Util.exists(fileName))
 			#else
 			if(OpenFlAssets.exists(fileName))
 			#end
@@ -1893,6 +1899,9 @@ class PlayState extends MusicBeatState
 			return;
 		}
 
+    #if mobile
+    mobileControls.visible = true;
+    #end
 		inCutscene = false;
 		seenCutscene = true;
 		var ret:Dynamic = callOnLuas('onStartCountdown', []);
@@ -2190,7 +2199,7 @@ class PlayState extends MusicBeatState
 		var songName:String = formattedSong;
 		var file:String = Paths.json(songName + '/events');
 		#if sys
-		if ((FileSystem.exists(Paths.modsJson(songName + '/events')) || FileSystem.exists(file)) && !ClientPrefs.optimize)
+		if ((Util.exists(Paths.modsJson(songName + '/events')) || Util.exists(file)) && !ClientPrefs.optimize)
 		#else
 		if (OpenFlAssets.exists(file) && !ClientPrefs.optimize)
 		#end
@@ -2886,7 +2895,7 @@ for(note in groupedNotes) {
 			botplayTxt.alpha = 1 - Math.sin((Math.PI * botplaySine) / 180);
 		}
 
-		if (startedCountdown && canPause && controls.PAUSE)
+		if (startedCountdown && canPause && controls.PAUSE #if mobile || FlxG.android.justReleased.BACK #end)
 		{
 			var ret:Dynamic = callOnLuas('onPause', []);
 			if(ret != FunkinLua.Function_Stop) {
@@ -3790,6 +3799,9 @@ for(note in groupedNotes) {
 			}
 		}
 
+    #if mobile
+    mobileControls.visible = false;
+    #end
 		timeBarBG.visible = false;
 		timeBar.visible = false;
 		timeTxt.visible = false;

@@ -87,7 +87,7 @@ class ModsMenuState extends MusicBeatState
 		visibleWhenNoMods.push(noModsTxt);
 
 		var path:String = 'modsList.txt';
-		if(FileSystem.exists(path))
+		if(Util.exists(path))
 		{
 			var leMods:Array<String> = CoolUtil.coolTextFile(path);
 			for (i in 0...leMods.length)
@@ -105,7 +105,7 @@ class ModsMenuState extends MusicBeatState
 
 		// FIND MOD FOLDERS
 		var boolshit = true;
-		if (FileSystem.exists("modsList.txt")){
+		if (Util.exists("modsList.txt")){
 			for (folder in Paths.getModDirectories())
 			{
 				if(!Paths.ignoreModFolders.contains(folder))
@@ -271,12 +271,12 @@ class ModsMenuState extends MusicBeatState
 		removeButton = new FlxButton(startX, 620, "Delete Selected Mod", function()
 		{
 			var path = haxe.io.Path.join([Paths.mods(), modsList[curSelected][0]]);
-			if(FileSystem.exists(path) && FileSystem.isDirectory(path))
+			if(Util.exists(path) && Util.isDirectory(path))
 			{
 				trace('Trying to delete directory ' + path);
 				try
 				{
-					FileSystem.deleteFile(path); //FUCK YOU HAXE WHY DONT YOU WORK WAAAAAAAAAAAAH
+					Util.deleteFile(path); //FUCK YOU HAXE WHY DONT YOU WORK WAAAAAAAAAAAAH
 
 					var icon = mods[curSelected].icon;
 					var alphabet = mods[curSelected].alphabet;
@@ -317,7 +317,7 @@ class ModsMenuState extends MusicBeatState
 		while (i < modsList.length)
 		{
 			var values:Array<Dynamic> = modsList[i];
-			if(!FileSystem.exists(Paths.mods(values[0])))
+			if(!Util.exists(Paths.mods(values[0])))
 			{
 				modsList.remove(modsList[i]);
 				continue;
@@ -335,7 +335,7 @@ class ModsMenuState extends MusicBeatState
 			//Don't ever cache the icons, it's a waste of loaded memory
 			var loadedIcon:BitmapData = null;
 			var iconToUse:String = Paths.mods(values[0] + '/pack.png');
-			if(FileSystem.exists(iconToUse))
+			if(Util.exists(iconToUse))
 			{
 				loadedIcon = BitmapData.fromFile(iconToUse);
 			}
@@ -729,8 +729,8 @@ class ModMetadata
 		
 		//Try loading json
 		var path = Paths.mods(folder + '/pack.json');
-		if(FileSystem.exists(path)) {
-			var rawJson:String = File.getContent(path);
+		if(Util.exists(path)) {
+			var rawJson:String = Util.getContent(path);
 			if(rawJson != null && rawJson.length > 0) {
 				var stuff:Dynamic = Json.parse(rawJson);
 					//using reflects cuz for some odd reason my haxe hates the stuff.var shit

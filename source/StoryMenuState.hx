@@ -823,6 +823,10 @@ class StoryMenuState extends UnlockableMusicBeatState
 		goop.alpha = curWeek == 0 && menuState == Normal ? 1 : 0;
 		updateBadges();
 
+    #if mobile
+    addVirtualPad(LEFT_FULL, A_B)
+    #end
+
 		super.create();
 		Paths.clearUnusedMemory();
 		openfl.system.System.gc();
@@ -1368,9 +1372,9 @@ class StoryMenuState extends UnlockableMusicBeatState
 
 		#if MODS_ALLOWED
 		var modPath:String = Paths.modFolders('data/' + set + 'weeks.json');
-		if(FileSystem.exists(modPath)) {
+		if(Util.exists(modPath)) {
 			rawJson = File.getContent(modPath);
-		} else if(FileSystem.exists(path)) {
+		} else if(Util.exists(path)) {
 			rawJson = File.getContent(path);
 		}
 		#else
