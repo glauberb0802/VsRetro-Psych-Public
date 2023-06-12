@@ -23,9 +23,9 @@ class ClientPrefs {
 	public static var cacheStory:Bool = true;
 
 	public static var Opt:Int = 17;
-	public static var wrathExperimental:Bool = false;
-	public static var chromatic:Bool = false;
-	public static var wrathShader:Bool = false;
+	public static var wrathExperimental:Bool = true;
+	public static var chromatic:Bool = true;
+	public static var wrathShader:Bool = true;
 	public static var shaders:Bool = false;
 
 	public static var empty:String = ''; // Empty - Ignore Me
