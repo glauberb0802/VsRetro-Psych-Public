@@ -347,7 +347,7 @@ class FreeplayState extends UnlockableMusicBeatState
 		add(text);
 		
     #if mobile
-    addVirtualPad(LEFT_FULL, A_B)
+    addVirtualPad(LEFT_FULL, A_B);
     #end
     
 		super.create();
