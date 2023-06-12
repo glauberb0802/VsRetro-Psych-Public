@@ -70,7 +70,7 @@ class GameOverSubstate extends MusicBeatSubstate
 		PlayState.instance.callOnLuas('onGameOverStart', []);
 
     #if mobile
-    addVirtualPad(NONE, A_B)
+    addVirtualPad(NONE, A_B);
     addVirtualPadCamera(false);
     #end
 
