@@ -26,7 +26,7 @@ using StringTools;
 
 class OptionsState extends MusicBeatState
 {
-	var options:Array<String> = ['Note Colors', 'Controls', 'Android Controls', 'Adjust Delay and Combo', 'Graphics', 'Visuals and UI', 'Gameplay', 'Unlock Everthing'];
+	var options:Array<String> = ['Note Colors', 'Controls', 'Android Controls', 'Adjust Delay and Combo', 'Graphics', 'Visuals and UI', 'Gameplay'];
 	private var grpOptions:FlxTypedGroup<Alphabet>;
 	private static var curSelected:Int = 0;
 	public static var menuBG:FlxSprite;
@@ -45,18 +45,6 @@ class OptionsState extends MusicBeatState
 				openSubState(new mobile.MobileControlsSubState());
 			case 'Gameplay':
 				openSubState(new options.GameplaySettingsSubState());
-			case 'Unlock Everthing':
-		   	Unlocks.allBfs();
-		   	Unlocks.allGfs();
-		   	Unlocks.allFoes();
-		   	Unlocks.allModes();
-		   	Unlocks.allWeeks();
-		   	Unlocks.unlockedSongs();
-		   	Unlocks.visibleSongs();
-		   	Unlocks.unlockedWeeks();
-		   	Unlocks.unlockedFoes();
-		   	Unlocks.unlockedBfs();
-		   	Unlocks.unlockedGfs();
 			case 'Adjust Delay and Combo':
 				if (TitleState.introMusic != null && TitleState.introMusic.playing)
 					TitleState.introMusic.stop();
