@@ -437,7 +437,7 @@ class Paths
 		var file:String = modsSounds(path, key);
 		if(Util.exists(file)) {
 			if(!currentTrackedSounds.exists(file)) {
-			currentTrackedSounds.set(gottenPath, Sound.fromFile(gottenPath));
+				currentTrackedSounds.set(file, Sound.fromFile(file));
 			}
 			localTrackedAssets.push(file);
 			return currentTrackedSounds.get(file);
@@ -452,15 +452,13 @@ class Paths
 			return currentTrackedSounds.get(gottenPath);
 		else
 		#if MODS_ALLOWED
-			currentTrackedSounds.set(gottenPath, Sound.fromFile('./' + gottenPath));
-		#else
 			currentTrackedSounds.set(gottenPath, OpenFlAssets.getSound(getPath('$path/$key.$SOUND_EXT', SOUND, library)));
 		#end
 		localTrackedAssets.push(gottenPath);
 		return currentTrackedSounds.get(gottenPath);
 	}
 	
-	#if MODS_ALLOWED
+	#if desktop
 	inline static public function mods(key:String = '') {
 		return 'mods/' + key;
 	}

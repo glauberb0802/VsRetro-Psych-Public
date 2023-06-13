@@ -61,6 +61,10 @@ class UnlockableMusicBeatState extends MusicBeatState
 
 		if (unlockedSongs.length > 0 || unlockedModes.length > 0 || unlockedChars.length > 0)
 			displayUnlocks();
+			
+    #if mobile
+    addVirtualPad(NONE, A);
+    #end
 	}
 
 	override function update(elapsed:Float)

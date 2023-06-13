@@ -753,19 +753,27 @@ class PlayState extends MusicBeatState
 		#end
 
 		// "GLOBAL" SCRIPTS
-		#if LUA_ALLOWED
-		var doPush:Bool = false; 
-		if (OpenFlAssets.exists('assets/scripts/script.lua')) {
-		  doPush = true;
-		}
+		var doPush:Bool = false;
+		var luaFile = Paths.getPreloadPath('scripts/script.lua');
+		if (OpenFlAssets.exists(luaFile))
 		
-		if(doPush)
-		luaArray.push(new FunkinLua(Asset2File.getPath('assets/scripts/script.lua')));
-		#end
+		doPush = true;
+		}
+
+		if(doPush) 
+			luaArray.push(new FunkinLua(Asset2File.getPath(luaFile)));
 
 		// STAGE SCRIPTS
-		#if (MODS_ALLOWED && LUA_ALLOWED)
-		startLuasOnFolder('stages/' + curStage + '.lua');
+		var doPush:Bool = false;
+		var luaFile = Paths.getPreloadPath('stages/' + curStage + '.lua');
+		if (OpenFlAssets.exists(luaFile))
+		{
+			doPush = true;
+		}
+
+		if(doPush) 
+			luaArray.push(new FunkinLua(Asset2File.getPath(luaFile)));
+
 		#end
 
 		if (!stageData.hide_opponent2)
@@ -1236,15 +1244,35 @@ class PlayState extends MusicBeatState
 		startingSong = true;
 
 		// SONG SPECIFIC SCRIPTS
-		#if LUA_ALLOWED
 		var doPush:Bool = false;
-		if (OpenFlAssets.exists('assets/data/' + Paths.formatToSongPath(SONG.song) + '/script.lua')) {
-		  doPush = true;
-		}
+		var luaFile = Paths.getPreloadPath('data/script.lua');
+		if (OpenFlAssets.exists(luaFile))
 		
-		if(doPush)
-		luaArray.push(new FunkinLua(Asset2File.getPath('assets/data/' + Paths.formatToSongPath(SONG.song) + '/script.lua')));
-		#end
+    doPush = true;
+		}
+
+		if(doPush) 
+			luaArray.push(new FunkinLua(Asset2File.getPath(luaFile)));
+
+		var doPush:Bool = false;
+		var luaFile = Paths.getPreloadPath('data/modchart.lua');
+		if (OpenFlAssets.exists(luaFile))
+		
+    doPush = true;
+		}
+
+		if(doPush) 
+			luaArray.push(new FunkinLua(Asset2File.getPath(luaFile)));
+
+		var doPush:Bool = false;
+		var luaFile = Paths.getPreloadPath('data/modchart-apocalypse.lua');
+		if (OpenFlAssets.exists(luaFile))
+		
+    doPush = true;
+		}
+
+		if(doPush) 
+			luaArray.push(new FunkinLua(Asset2File.getPath(luaFile)));
 
 		hasIceNotes = noteTypeMap.exists('iceNote');
 
@@ -5382,6 +5410,33 @@ for(note in groupedNotes) {
 			}
 		});
 	}
+
+	#if LUA_ALLOWED
+	public function startLuasOnFolder(luaFile:String)
+	{
+		for (script in luaArray)
+		{
+			if(script.scriptName == luaFile) return false;
+		}
+
+		#if MODS_ALLOWED
+		var luaToLoad:String = Paths.getPreloadPath(luaFile);
+			if(OpenFlAssets.exists(luaToLoad))
+			{
+				luaArray.push(new FunkinLua(Asset2File.getPath(luaToLoad)));
+				return true;
+			}
+		#elseif sys
+		var luaToLoad:String = Paths.getPreloadPath(luaFile);
+		if(OpenFlAssets.exists(luaToLoad))
+		{
+			luaArray.push(new FunkinLua(Asset2File.getPath(luaToLoad)));
+			return true;
+		}
+		#end
+		return false;
+	}
+	#end
 
 	public var closeLuas:Array<FunkinLua> = [];
 	public function callOnLuas(event:String, args:Array<Dynamic>):Dynamic {

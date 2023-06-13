@@ -171,6 +171,10 @@ class DisclaimerState extends FlxState {
 			state = Flashing;
 		}
 
+    #if mobile
+    addVirtualPad(LEFT_RIGHT, A);
+    #end
+
 		super.create();
 	}
 
@@ -191,7 +195,7 @@ class DisclaimerState extends FlxState {
 				selectSprite.x = 660;
 				isFlashing = false;
 			}
-			else if (FlxG.keys.justPressed.ENTER || PlayerSettings.player1.controls.ACCEPT #if android || FlxG.android.justReleased.BACK #end)
+			else if (FlxG.keys.justPressed.ENTER || PlayerSettings.player1.controls.ACCEPT)
 			{
 				if (checked)
 				{

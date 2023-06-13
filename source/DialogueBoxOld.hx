@@ -192,8 +192,19 @@ class DialogueBoxOld extends FlxSpriteGroup
 			dialogueStarted = true;
 		}
 
-		if(PlayerSettings.player1.controls.ACCEPT)
-		{
+		        #if mobile
+                        var justTouched:Bool = false;
+
+		        for (touch in FlxG.touches.list)
+		        {
+			        if (touch.justPressed)
+			        {
+				        justTouched = true;
+			        }
+		        }
+		        #end
+
+			if(PlayerSettings.player1.controls.ACCEPT #if mobile || justTouched #end) {
 			if (dialogueEnded)
 			{
 				remove(dialogue);
