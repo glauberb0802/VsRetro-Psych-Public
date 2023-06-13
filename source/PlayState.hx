@@ -1716,7 +1716,6 @@ class PlayState extends MusicBeatState
 			}
 			luaArray.push(new FunkinLua(luaFile));
 		}
-		#end
 	}
 
 	function startCharacterPos(char:Character, ?gfCheck:Bool = false) {
