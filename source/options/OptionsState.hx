@@ -46,17 +46,17 @@ class OptionsState extends MusicBeatState
 			case 'Gameplay':
 				openSubState(new options.GameplaySettingsSubState());
 			case 'Unlock Everthing':
-		   	Unlocks.allBfs
-		   	Unlocks.allGfs
-		   	Unlocks.allFoes
-		   	Unlocks.allModes
-		   	Unlocks.allWeeks
-		   	Unlocks.unlockedSongs
-		   	Unlocks.visibleSongs
-		   	Unlocks.unlockedWeeks
-		   	Unlocks.unlockedFoes
-		   	Unlocks.unlockedBfs
-		   	Unlocks.unlockedGfs
+		   	Unlocks.allBfs();
+		   	Unlocks.allGfs();
+		   	Unlocks.allFoes();
+		   	Unlocks.allModes();
+		   	Unlocks.allWeeks();
+		   	Unlocks.unlockedSongs();
+		   	Unlocks.visibleSongs();
+		   	Unlocks.unlockedWeeks();
+		   	Unlocks.unlockedFoes();
+		   	Unlocks.unlockedBfs();
+		   	Unlocks.unlockedGfs();
 			case 'Adjust Delay and Combo':
 				if (TitleState.introMusic != null && TitleState.introMusic.playing)
 					TitleState.introMusic.stop();
