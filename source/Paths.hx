@@ -458,7 +458,7 @@ class Paths
 		return currentTrackedSounds.get(gottenPath);
 	}
 	
-	#if desktop
+	#if MODS_ALLOWED
 	inline static public function mods(key:String = '') {
 		return 'mods/' + key;
 	}
