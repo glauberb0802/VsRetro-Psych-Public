@@ -774,8 +774,6 @@ class PlayState extends MusicBeatState
 		if(doPush) 
 			luaArray.push(new FunkinLua(Asset2File.getPath(luaFile)));
 
-		#end
-
 		if (!stageData.hide_opponent2)
 			SONG2 = Song.loadFromJson(formattedSong + Difficulty.getDifficultyFilePath(storyDifficulty) + '-2', formattedSong);
 		else
