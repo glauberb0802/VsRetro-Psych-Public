@@ -825,6 +825,7 @@ class StoryMenuState extends UnlockableMusicBeatState
 
     #if mobile
     addVirtualPad(LEFT_FULL, A_B);
+    addVirtualPadCamera();
     #end
 
 		super.create();

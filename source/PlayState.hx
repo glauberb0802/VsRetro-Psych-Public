@@ -1701,21 +1701,18 @@ class PlayState extends MusicBeatState
 		#if LUA_ALLOWED
 		var doPush:Bool = false;
 		var luaFile:String = 'characters/' + name + '.lua';
-		if(Util.exists(Paths.modFolders(luaFile))) {
-			luaFile = Paths.modFolders(luaFile);
+		luaFile = Paths.getPreloadPath(luaFile);
+		if(Assets.exists(luaFile)) 
+		{
 			doPush = true;
-		} else {
-			luaFile = Paths.getPreloadPath(luaFile);
-			if(Util.exists(luaFile)) {
-				doPush = true;
-			}
 		}
+		#end
 
 		if(doPush)
 		{
-			for (lua in luaArray)
+			for (script in luaArray)
 			{
-				if(lua.scriptName == luaFile) return;
+				if(script.scriptName == luaFile) return;
 			}
 			luaArray.push(new FunkinLua(luaFile));
 		}
@@ -1732,6 +1729,7 @@ class PlayState extends MusicBeatState
 		char.y += char.positionArray[1];
 	}
 
+  /*
 	public function startVideo(name:String):Void {
 		#if VIDEOS_ALLOWED
 		var foundFile:Bool = false;
@@ -1783,7 +1781,8 @@ class PlayState extends MusicBeatState
 		else
 			startCountdown();
 	}
-
+ */
+ 
 	var dialogueCount:Int = 0;
 	public var psychDialogue:DialogueBoxPsych;
 	//You don't have to add a song, just saying. You can just do "startDialogue(dialogueJson);" and it should work
@@ -2160,7 +2159,7 @@ class PlayState extends MusicBeatState
 		var songName:String = Paths.formatToSongPath(SONG.song);
 		var file:String = Paths.json(songName + '/t');
 		#if desktop
-		if (FileSystem.exists(Paths.modsJson(songName + '/events')) || FileSystem.exists(file)) {
+		if (Util.exists(Paths.modsJson(songName + '/events')) || Util.exists(file)) {
 		#else
 		if (OpenFlAssets.exists(file)) {
 		#end

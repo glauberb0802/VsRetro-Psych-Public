@@ -121,7 +121,7 @@ class GraphicsSettingsSubState extends BaseOptionsMenu
 			'If unchecked, disables chromatic effect.',
 			'chromatic',
 			'bool',
-			true);
+			false);
 		option.id = "chromatic";
 		option.showBoyfriend = true;
 		option.onSelect = onChangeChromatic; //Changing onChange is only needed if you want to make a special interaction after it changes the value
