@@ -1245,7 +1245,7 @@ class PlayState extends MusicBeatState
 		var doPush:Bool = false;
 		var luaFile = Paths.getPreloadPath('data/script.lua');
 		if (OpenFlAssets.exists(luaFile))
-		
+	  }
     doPush = true;
 		}
 
@@ -1255,7 +1255,7 @@ class PlayState extends MusicBeatState
 		var doPush:Bool = false;
 		var luaFile = Paths.getPreloadPath('data/modchart.lua');
 		if (OpenFlAssets.exists(luaFile))
-		
+		}
     doPush = true;
 		}
 
@@ -1265,7 +1265,7 @@ class PlayState extends MusicBeatState
 		var doPush:Bool = false;
 		var luaFile = Paths.getPreloadPath('data/modchart-apocalypse.lua');
 		if (OpenFlAssets.exists(luaFile))
-		
+		}
     doPush = true;
 		}
 
