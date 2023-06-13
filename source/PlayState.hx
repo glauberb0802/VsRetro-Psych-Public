@@ -1242,35 +1242,35 @@ class PlayState extends MusicBeatState
 		startingSong = true;
 
 		// SONG SPECIFIC SCRIPTS
+		// default script.lua
 		var doPush:Bool = false;
-		var luaFile = Paths.getPreloadPath('data/script.lua');
-		if (OpenFlAssets.exists(luaFile))
-	  }
-    doPush = true;
+		if (OpenFlAssets.exists('assets/data/' + Paths.formatToSongPath(SONG.song) + '/script.lua')) {
+		  doPush = true;
 		}
-
-		if(doPush) 
-			luaArray.push(new FunkinLua(Asset2File.getPath(luaFile)));
-
+		
+		if(doPush)
+		luaArray.push(new FunkinLua(Asset2File.getPath('assets/data/' + Paths.formatToSongPath(SONG.song) + '/script.lua')));
+		#end
+		
+		// for modchart.lua
 		var doPush:Bool = false;
-		var luaFile = Paths.getPreloadPath('data/modchart.lua');
-		if (OpenFlAssets.exists(luaFile))
+		if (OpenFlAssets.exists('assets/data/' + Paths.formatToSongPath(SONG.song) + '/modchart.lua')) {
+		  doPush = true;
 		}
-    doPush = true;
-		}
+		
+		if(doPush)
+		luaArray.push(new FunkinLua(Asset2File.getPath('assets/data/' + Paths.formatToSongPath(SONG.song) + '/modchart.lua')));
+		#end
 
-		if(doPush) 
-			luaArray.push(new FunkinLua(Asset2File.getPath(luaFile)));
-
+    // for modchart-apocalypse
 		var doPush:Bool = false;
-		var luaFile = Paths.getPreloadPath('data/modchart-apocalypse.lua');
-		if (OpenFlAssets.exists(luaFile))
+		if (OpenFlAssets.exists('assets/data/' + Paths.formatToSongPath(SONG.song) + '/modchart-apocalypse.lua')) {
+		  doPush = true;
 		}
-    doPush = true;
-		}
-
-		if(doPush) 
-			luaArray.push(new FunkinLua(Asset2File.getPath(luaFile)));
+		
+		if(doPush)
+		luaArray.push(new FunkinLua(Asset2File.getPath('assets/data/' + Paths.formatToSongPath(SONG.song) + '/modchart-apocalypse.lua')));
+		#end
 
 		hasIceNotes = noteTypeMap.exists('iceNote');
 
