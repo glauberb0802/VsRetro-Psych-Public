@@ -754,47 +754,18 @@ class PlayState extends MusicBeatState
 
 		// "GLOBAL" SCRIPTS
 		#if LUA_ALLOWED
-		var filesPushed:Array<String> = [];
-		var foldersToCheck:Array<String> = [Paths.getPreloadPath('scripts/')];
-
-		#if MODS_ALLOWED
-		foldersToCheck.insert(0, Paths.mods('scripts/'));
-		if(Paths.currentModDirectory != null && Paths.currentModDirectory.length > 0)
-			foldersToCheck.insert(0, Paths.mods(Paths.currentModDirectory + '/scripts/'));
-		#end
-
-		for (folder in foldersToCheck)
-		{
-			if(Util.exists(folder))
-			{
-				for (file in Util.readDirectory(folder))
-				{
-					if(file.endsWith('.lua') && !filesPushed.contains(file) && !ClientPrefs.optimize)
-					{
-						luaArray.push(new FunkinLua(folder + file));
-						filesPushed.push(file);
-					}
-				}
-			}
+		var doPush:Bool = false; 
+		if (OpenFlAssets.exists('assets/scripts/script.lua')) {
+		  doPush = true;
 		}
+		
+		if(doPush)
+		luaArray.push(new FunkinLua(Asset2File.getPath('assets/scripts/script.lua')));
 		#end
 
 		// STAGE SCRIPTS
 		#if (MODS_ALLOWED && LUA_ALLOWED)
-		var doPush:Bool = false;
-		var luaFile:String = 'stages/' + curStage + '.lua';
-		if(Util.exists(Paths.modFolders(luaFile))) {
-			luaFile = Paths.modFolders(luaFile);
-			doPush = true;
-		} else {
-			luaFile = Paths.getPreloadPath(luaFile);
-			if(Util.exists(luaFile)) {
-				doPush = true;
-			}
-		}
-
-		if(doPush && !ClientPrefs.optimize)
-			luaArray.push(new FunkinLua(luaFile));
+		startLuasOnFolder('stages/' + curStage + '.lua');
 		#end
 
 		if (!stageData.hide_opponent2)
@@ -1148,38 +1119,15 @@ class PlayState extends MusicBeatState
 		generateSong();
 
 		WindowTitle.progress(80);
+		
 		#if LUA_ALLOWED
 		for (notetype in noteTypeMap.keys())
 		{
-			var luaToLoad:String = Paths.modFolders('custom_notetypes/' + notetype + '.lua');
-			if(Util.exists(luaToLoad))
-			{
-				luaArray.push(new FunkinLua(luaToLoad));
-			}
-			else
-			{
-				luaToLoad = Paths.getPreloadPath('custom_notetypes/' + notetype + '.lua');
-				if(Util.exists(luaToLoad))
-				{
-					luaArray.push(new FunkinLua(luaToLoad));
-				}
-			}
+			startLuasOnFolder('custom_notetypes/' + notetype + '.lua');
 		}
 		for (event in eventPushedMap.keys())
 		{
-			var luaToLoad:String = Paths.modFolders('custom_events/' + event + '.lua');
-			if(Util.exists(luaToLoad))
-			{
-				luaArray.push(new FunkinLua(luaToLoad));
-			}
-			else
-			{
-				luaToLoad = Paths.getPreloadPath('custom_events/' + event + '.lua');
-				if(Util.exists(luaToLoad))
-				{
-					luaArray.push(new FunkinLua(luaToLoad));
-				}
-			}
+			startLuasOnFolder('custom_events/' + event + '.lua');
 		}
 		#end
 
@@ -1289,29 +1237,13 @@ class PlayState extends MusicBeatState
 
 		// SONG SPECIFIC SCRIPTS
 		#if LUA_ALLOWED
-		var filesPushed:Array<String> = [];
-		var foldersToCheck:Array<String> = [Paths.getPreloadPath('data/' + formattedSong + '/')];
-
-		#if MODS_ALLOWED
-		foldersToCheck.insert(0, Paths.mods('data/' + formattedSong + '/'));
-		if(Paths.currentModDirectory != null && Paths.currentModDirectory.length > 0)
-			foldersToCheck.insert(0, Paths.mods(Paths.currentModDirectory + '/data/' + formattedSong + '/'));
-		#end
-
-		for (folder in foldersToCheck)
-		{
-			if(Util.exists(folder))
-			{
-				for (file in Util.readDirectory(folder))
-				{
-					if(file.endsWith('.lua') && !filesPushed.contains(file) && !ClientPrefs.optimize)
-					{
-						luaArray.push(new FunkinLua(folder + file));
-						filesPushed.push(file);
-					}
-				}
-			}
+		var doPush:Bool = false;
+		if (OpenFlAssets.exists('assets/data/' + Paths.formatToSongPath(SONG.song) + '/script.lua')) {
+		  doPush = true;
 		}
+		
+		if(doPush)
+		luaArray.push(new FunkinLua(Asset2File.getPath('assets/data/' + Paths.formatToSongPath(SONG.song) + '/script.lua')));
 		#end
 
 		hasIceNotes = noteTypeMap.exists('iceNote');
@@ -2196,10 +2128,13 @@ class PlayState extends MusicBeatState
 
 		var noteData:Array<SwagSection> = SONG.notes;
 
-		var songName:String = formattedSong;
-		var file:String = Paths.json(songName + '/events');
-		if (OpenFlAssets.exists(file) && !ClientPrefs.optimize)
-		{
+		var songName:String = Paths.formatToSongPath(SONG.song);
+		var file:String = Paths.json(songName + '/t');
+		#if desktop
+		if (FileSystem.exists(Paths.modsJson(songName + '/events')) || FileSystem.exists(file)) {
+		#else
+		if (OpenFlAssets.exists(file)) {
+		#end
 			var eventsData:Array<Dynamic> = Song.loadFromJson('events', songName).events;
 			for (event in eventsData) //Event Notes
 			{

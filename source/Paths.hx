@@ -437,7 +437,7 @@ class Paths
 		var file:String = modsSounds(path, key);
 		if(Util.exists(file)) {
 			if(!currentTrackedSounds.exists(file)) {
-				currentTrackedSounds.set(file, Sound.fromFile(file));
+			currentTrackedSounds.set(gottenPath, Sound.fromFile(gottenPath));
 			}
 			localTrackedAssets.push(file);
 			return currentTrackedSounds.get(file);

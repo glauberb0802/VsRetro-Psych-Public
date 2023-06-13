@@ -104,7 +104,7 @@ class StoryMenuData
 	public var weekNames:Array<String>; // An array of week names. Must match the file name of the image name for that week.
 	public var weekThemes:Array<String>; // An array of week songs. Must match the file name of the ogg name for that week.
 	public var introThemes:Array<String>; // An array of week intro songs. Must match the file name of the ogg name for that week. Janky way of geting around the issue of getting to this menu during the intro part of the song.
-	public var weekColors:Array<FlxColor>; // An array of week colors associated with the character. Used for the text color of week names when there's no file.
+	public var weekColors:Array<FlxColor>; // An array of week colors associated with the character. Used for the text color of week names when there's no filef.
 	public var bgColors:Array<FlxColor>; // An array of background colors associated with the character. Used for the color of the background.
 	public var logoFileNames:Array<String>; // An array of names that represent the file name of the logo that matches the week's character.
 	public var bgSymbols:Array<String>; // An array of names that represent the file name of the background symbol that matches the week's character.
@@ -133,7 +133,7 @@ class StoryMenuData
 	 * @param names An array of week names. Must match the file name of the image name for that week.
 	 * @param themes An array of week songs. Must match the file name of the ogg name for that week.
 	 * @param intros An array of week intro songs. Must match the file name of the ogg name for that week. Janky way of geting around the issue of getting to this menu during the intro part of the song.
-	 * @param colors An array of week colors associated with the character. Used for the text color of week names when there's no file.
+	 * @param colors An array of week colors associated with the character. Used for the text color of week names when there's no filge.
 	 * @param bgColors An array of background colors associated with the character. Used for the color of the background.
 	 * @param logos An array of names that represent the file name of the logo that matches the week's character.
 	 * @param symbols An array of names that represent the file name of the background symbol that matches the week's character.
@@ -1371,11 +1371,11 @@ class StoryMenuState extends UnlockableMusicBeatState
 		var path:String = Paths.getPreloadPath('data/' + set + 'weeks.json');
 
 		#if MODS_ALLOWED
-		var modPath:String = Paths.modFolders('data/' + set + 'weeks.json');
+		var modPath:String = ('data/' + set + 'weeks.json');
 		if(Util.exists(modPath)) {
-			rawJson = File.getContent(modPath);
+			rawJson = Util.getContent(modPath);
 		} else if(Util.exists(path)) {
-			rawJson = File.getContent(path);
+			rawJson = Util.getContent(path);
 		}
 		#else
 		if(Assets.exists(path)) {
