@@ -14,7 +14,7 @@ private enum State
 	Suggestive;
 }
 
-class DisclaimerState extends FlxState {
+class DisclaimerState extends MusicBeatState {
 	var state:State = Flashing;
 
 	var selectSprite:FlxSprite;
@@ -170,6 +170,10 @@ class DisclaimerState extends FlxState {
 		{
 			state = Flashing;
 		}
+
+    #if mobile
+    addVirtualPad(LEFT_RIGHT, A);
+    #end
 
 		super.create();
 	}
