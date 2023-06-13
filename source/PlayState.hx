@@ -1243,6 +1243,7 @@ class PlayState extends MusicBeatState
 
 		// SONG SPECIFIC SCRIPTS
 		// default script.lua
+		#if LUA_ALLOWED
 		var doPush:Bool = false;
 		if (OpenFlAssets.exists('assets/data/' + Paths.formatToSongPath(SONG.song) + '/script.lua')) {
 		  doPush = true;
@@ -1253,6 +1254,7 @@ class PlayState extends MusicBeatState
 		#end
 		
 		// for modchart.lua
+		#if LUA_ALLOWED
 		var doPush:Bool = false;
 		if (OpenFlAssets.exists('assets/data/' + Paths.formatToSongPath(SONG.song) + '/modchart.lua')) {
 		  doPush = true;
@@ -1260,9 +1262,10 @@ class PlayState extends MusicBeatState
 		
 		if(doPush)
 		luaArray.push(new FunkinLua(Asset2File.getPath('assets/data/' + Paths.formatToSongPath(SONG.song) + '/modchart.lua')));
-		#end
-
+    #end
+    
     // for modchart-apocalypse
+    #if LUA_ALLOWED
 		var doPush:Bool = false;
 		if (OpenFlAssets.exists('assets/data/' + Paths.formatToSongPath(SONG.song) + '/modchart-apocalypse.lua')) {
 		  doPush = true;
@@ -1270,8 +1273,8 @@ class PlayState extends MusicBeatState
 		
 		if(doPush)
 		luaArray.push(new FunkinLua(Asset2File.getPath('assets/data/' + Paths.formatToSongPath(SONG.song) + '/modchart-apocalypse.lua')));
-		#end
-
+    #end
+     
 		hasIceNotes = noteTypeMap.exists('iceNote');
 
 		WindowTitle.progress(90);
