@@ -174,7 +174,7 @@ class DisclaimerState extends FlxState
 		}
 
     #if mobile
-    addVirtualPad(LEFT_RIGHT, A_B);
+    addVirtualPad(LEFT_RIGHT, A);
     #end
 
 		super.create();

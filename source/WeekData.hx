@@ -100,7 +100,7 @@ class WeekData {
 	{
 		var weeksList = [];
 		var weeksLoaded = new Map<String, WeekData>();
-		#if MODS_ALLOWED
+		#if desktop
 		var disabledMods:Array<String> = [];
 		var modsListPath:String = 'modsList.txt';
 		var directories:Array<String> = [Paths.mods(), Paths.getPreloadPath()];
@@ -152,7 +152,7 @@ class WeekData {
 					if(week != null) {
 						var weekFile:WeekData = new WeekData(week, sexList[i]);
 
-						#if MODS_ALLOWED
+						#if desktop
 						if(j >= originalLength) {
 							weekFile.folder = directories[j].substring(Paths.mods().length, directories[j].length-1);
 						}

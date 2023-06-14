@@ -202,7 +202,7 @@ class FunkinLua {
 		set('buildTarget', 'unknown');
 		#end
 
-		Lua_helper.add_callback(lua, "", function(luaFile:String, ?ignoreAlreadyRunning:Bool = false) { //would be dope asf. 
+		Lua_helper.add_callback(lua, "addLuaScript", function(luaFile:String, ?ignoreAlreadyRunning:Bool = false) { //would be dope asf. 
 			var cervix = luaFile + ".lua";
 			var doPush = false;
 			if(Util.exists(Paths.getPreloadPath(cervix))) {

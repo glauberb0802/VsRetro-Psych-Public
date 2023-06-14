@@ -90,7 +90,7 @@ class DialogueCharacter extends FlxSprite
 		var characterPath:String = 'images/dialogue/' + character + '.json';
 		var rawJson = null;
 
-		#if MODS_ALLOWED
+		#if desktop
 		var path:String = Paths.modFolders(characterPath);
 		if (!Util.exists(path)) {
 			path = Paths.getPreloadPath(characterPath);
@@ -528,7 +528,7 @@ class DialogueBoxPsych extends FlxSpriteGroup
 	}
 
 	public static function parseDialogue(path:String):DialogueFile {
-		#if MODS_ALLOWED
+		#if desktop
 		if(Util.exists(path))
 		{
 			return cast Json.parse(Util.getContent(path));

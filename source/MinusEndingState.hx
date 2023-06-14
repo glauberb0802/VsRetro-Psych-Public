@@ -146,7 +146,7 @@ class MinusEndingState extends FlxSubState {
 		cameras[0].angle = 0;
 
     #if mobile
-    MusicBeatSubState.addVirtualPad(NONE, A);
+    addVirtualPad(NONE, A);
     #end
     
 		super.create();

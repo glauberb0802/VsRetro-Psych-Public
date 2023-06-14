@@ -58,7 +58,7 @@ class StageData {
 		var rawJson:String = null;
 		var path:String = Paths.getPreloadPath('stages/' + stage + '.json');
 
-		#if MODS_ALLOWED
+		#if desktop
 		var modPath:String = Paths.modFolders('stages/' + stage + '.json');
 		if(Util.exists(modPath)) {
 			rawJson = File.getContent(modPath);
