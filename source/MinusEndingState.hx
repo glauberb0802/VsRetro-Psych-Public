@@ -9,7 +9,6 @@ import flixel.tweens.FlxTween;
 import flixel.util.FlxColor;
 import flixel.util.FlxTimer;
 import flixel.group.FlxGroup.FlxTypedGroup;
-import MusicBeatSubState;
 
 class MinusEndingState extends FlxSubState {
 	var minusEndBG:FlxSprite;
@@ -145,15 +144,11 @@ class MinusEndingState extends FlxSubState {
 		
 		cameras[0].angle = 0;
 
-    #if mobile
-    addVirtualPad(NONE, A);
-    #end
-    
 		super.create();
 	}
 
 	override function update(elapsed:Float) {
-		if (FlxG.keys.justPressed.ENTER) {
+		if (FlxG.keys.justPressed.ENTER #if mobile || FlxG.android.justReleased.BACK #end) {
 			if (enterPressedOnce/* || PlayState.finishedMinus*/) {
 				//SaveDataManager.instance.endingData.setFinishedMinusFlag(true);
 				if(FlxG.sound.music != null) {

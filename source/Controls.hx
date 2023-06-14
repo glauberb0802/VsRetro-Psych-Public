@@ -1,8 +1,5 @@
 package;
 
-import haxe.DynamicAccess;
-import haxe.Json;
-import haxe.ds.EnumValueMap;
 import flixel.FlxG;
 import flixel.input.FlxInput;
 import flixel.input.actions.FlxAction;

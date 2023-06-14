@@ -7,7 +7,6 @@ import flixel.tweens.FlxTween;
 import flixel.util.FlxColor;
 import flixel.util.FlxTimer;
 import flixel.group.FlxGroup.FlxTypedGroup;
-import MusicBeatState;
 
 private enum State
 {
@@ -173,10 +172,6 @@ class DisclaimerState extends FlxState
 			state = Flashing;
 		}
 
-    #if mobile
-    addVirtualPad(LEFT_RIGHT, A);
-    #end
-
 		super.create();
 	}
 
@@ -197,7 +192,7 @@ class DisclaimerState extends FlxState
 				selectSprite.x = 660;
 				isFlashing = false;
 			}
-			else if (FlxG.keys.justPressed.ENTER || PlayerSettings.player1.controls.ACCEPT)
+			else if (FlxG.keys.justPressed.ENTER || PlayerSettings.player1.controls.ACCEPT #if mobile || FlxG.android.justReleased.BACK #end)
 			{
 				if (checked)
 				{
