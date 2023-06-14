@@ -14,7 +14,7 @@ private enum State
 	Suggestive;
 }
 
-class DisclaimerState extends MusicBeatState {
+class DisclaimerState extends FlxState, MusicBeatState {
 	var state:State = Flashing;
 
 	var selectSprite:FlxSprite;

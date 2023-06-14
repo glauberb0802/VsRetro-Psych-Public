@@ -86,7 +86,7 @@ class Song
 	{
 		var formattedFolder:String = Paths.formatToSongPath(folder);
 		var formattedSong:String = Paths.formatToSongPath(jsonInput);
-		#if MODS_ALLOWED
+		#if desktop
 		var moddyFile:String = Paths.modsJson(formattedFolder + '/' + formattedSong);
 		if(Util.exists(moddyFile)) {
 			return true;
@@ -95,11 +95,7 @@ class Song
 
 		var file = Paths.json(formattedFolder + '/' + formattedSong);
 
-		#if sys
-		return Util.exists(file);
-		#else
 		return Assets.exists(file, TEXT);
-		#end
 	}
 
 	public static function loadFromJson(jsonInput:String, ?folder:String):SwagSong
@@ -108,7 +104,7 @@ class Song
 		
 		var formattedFolder:String = Paths.formatToSongPath(folder);
 		var formattedSong:String = Paths.formatToSongPath(jsonInput);
-		#if MODS_ALLOWED
+		#if desktop
 		var moddyFile:String = Paths.modsJson(formattedFolder + '/' + formattedSong);
 		if(Util.exists(moddyFile)) {
 			rawJson = Util.getContent(moddyFile).trim();
