@@ -73,7 +73,7 @@ class Song
 		var formattedFolder:String = Paths.formatToSongPath(folder);
 		var formattedSong:String = Paths.formatToSongPath(jsonInput);
 		#if MODS_ALLOWED
-		var moddyFile:String = Paths.modsJson(formattedFolder + '/' + formattedSong);
+		var moddyFile:String = Paths.getPreloadPath(formattedFolder + '/' + formattedSong);
 		if(Util.exists(moddyFile)) {
 			return moddyFile;
 		}
@@ -87,7 +87,7 @@ class Song
 		var formattedFolder:String = Paths.formatToSongPath(folder);
 		var formattedSong:String = Paths.formatToSongPath(jsonInput);
 		#if desktop
-		var moddyFile:String = Paths.modsJson(formattedFolder + '/' + formattedSong);
+		var moddyFile:String = Paths.getPreloadPath(formattedFolder + '/' + formattedSong);
 		if(Util.exists(moddyFile)) {
 			return true;
 		}

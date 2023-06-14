@@ -37,7 +37,7 @@ enum abstract MenuState(Int)
 	var None = -1;
 }
 
-class StoryMenuCharacter extends Character, MusicBeatState
+class StoryMenuCharacter extends Character
 {
 	public var posOffset:FlxPoint; // X and Y offset of the character from where it should be positioned.
 	public var focusScale:Float; // The X and Y scale for when the character is focused on.

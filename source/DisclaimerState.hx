@@ -7,6 +7,7 @@ import flixel.tweens.FlxTween;
 import flixel.util.FlxColor;
 import flixel.util.FlxTimer;
 import flixel.group.FlxGroup.FlxTypedGroup;
+import MusicBeatState;
 
 private enum State
 {
@@ -14,7 +15,8 @@ private enum State
 	Suggestive;
 }
 
-class DisclaimerState extends FlxState, MusicBeatState {
+class DisclaimerState extends FlxState
+{
 	var state:State = Flashing;
 
 	var selectSprite:FlxSprite;
@@ -172,7 +174,7 @@ class DisclaimerState extends FlxState, MusicBeatState {
 		}
 
     #if mobile
-    addVirtualPad(LEFT_RIGHT, A);
+    addVirtualPad(LEFT_RIGHT, A_B);
     #end
 
 		super.create();

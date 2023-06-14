@@ -9,8 +9,9 @@ import flixel.tweens.FlxTween;
 import flixel.util.FlxColor;
 import flixel.util.FlxTimer;
 import flixel.group.FlxGroup.FlxTypedGroup;
+import MusicBeatSubState;
 
-class MinusEndingState extends FlxSubState, MusicBeatSubstate {
+class MinusEndingState extends FlxSubState {
 	var minusEndBG:FlxSprite;
 	var minusEndingGroup:FlxTypedGroup<FlxSprite>;
 	var minusCardGroup:FlxTypedGroup<FlxSprite>;
@@ -145,7 +146,7 @@ class MinusEndingState extends FlxSubState, MusicBeatSubstate {
 		cameras[0].angle = 0;
 
     #if mobile
-    addVirtualPad(NONE, A);
+    MusicBeatSubState.addVirtualPad(NONE, A);
     #end
     
 		super.create();

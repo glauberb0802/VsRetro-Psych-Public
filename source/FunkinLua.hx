@@ -202,11 +202,11 @@ class FunkinLua {
 		set('buildTarget', 'unknown');
 		#end
 
-		Lua_helper.add_callback(lua, "addLuaScript", function(luaFile:String, ?ignoreAlreadyRunning:Bool = false) { //would be dope asf. 
+		Lua_helper.add_callback(lua, "", function(luaFile:String, ?ignoreAlreadyRunning:Bool = false) { //would be dope asf. 
 			var cervix = luaFile + ".lua";
 			var doPush = false;
-			if(Util.exists(Paths.modFolders(cervix))) {
-				cervix = Paths.modFolders(cervix);
+			if(Util.exists(Paths.getPreloadPath(cervix))) {
+				cervix = Paths.getPreloadPath(cervix);
 				doPush = true;
 			} else {
 				cervix = Paths.getPreloadPath(cervix);
@@ -236,8 +236,8 @@ class FunkinLua {
 		Lua_helper.add_callback(lua, "removeLuaScript", function(luaFile:String, ?ignoreAlreadyRunning:Bool = false) { //would be dope asf. 
 			var cervix = luaFile + ".lua";
 			var doPush = false;
-			if(Util.exists(Paths.modFolders(cervix))) {
-				cervix = Paths.modFolders(cervix);
+			if(Util.exists(Paths.getPreloadPath(cervix))) {
+				cervix = Paths.getPreloadPath(cervix);
 				doPush = true;
 			} else {
 				cervix = Paths.getPreloadPath(cervix);
@@ -1433,7 +1433,7 @@ class FunkinLua {
 			return FlxG.random.bool(chance);
 		});
 		Lua_helper.add_callback(lua, "startDialogue", function(dialogueFile:String, music:String = null) {
-			var path:String = Paths.modsJson(Paths.formatToSongPath(PlayState.SONG.song) + '/' + dialogueFile);
+			var path:String = Paths.getPreloadPath(Paths.formatToSongPath(PlayState.SONG.song) + '/' + dialogueFile);
 			if(!Util.exists(path)) {
 				path = Paths.json(Paths.formatToSongPath(PlayState.SONG.song) + '/' + dialogueFile);
 			}
@@ -1458,7 +1458,7 @@ class FunkinLua {
 		});
 		Lua_helper.add_callback(lua, "startVideo", function(videoFile:String) {
 			#if VIDEOS_ALLOWED
-			if(Util.exists(Paths.video(videoFile))) {
+			if(FileSystem.exists(Paths.video(videoFile))) {
 				PlayState.instance.startVideo(videoFile);
 			} else {
 				luaTrace('Video file not found: ' + videoFile);

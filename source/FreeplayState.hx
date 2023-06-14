@@ -22,7 +22,7 @@ import sys.FileSystem;
 
 using StringTools;
 
-class FreeplayState extends UnlockableMusicBeatState, MusicBeatState
+class FreeplayState extends UnlockableMusicBeatState
 {
 	var songs:Array<SongMetadata> = [];
 

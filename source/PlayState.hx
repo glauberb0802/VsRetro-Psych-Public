@@ -1229,8 +1229,7 @@ class PlayState extends MusicBeatState
 		timeTxt.cameras = [camHUD];
 		
 		#if mobile
-		addMobileControls(false);
-    mobileControls.visible = false;
+		addMobileControls();
 		#end
 		
 		//if(!doof.noDialogue) doof.cameras = [camHUD];
@@ -1854,15 +1853,14 @@ class PlayState extends MusicBeatState
 			return;
 		}
 
-    #if mobile
-    mobileControls.visible = true;
-    #end
 		inCutscene = false;
 		seenCutscene = true;
 		var ret:Dynamic = callOnLuas('onStartCountdown', []);
 		if(ret != FunkinLua.Function_Stop) {
 			if (skipCountdown || startOnTime > 0) skipArrowStartTween = true;
-
+    #if mobile
+    mobileControls.visible = true;
+    #end
 			generateStaticArrows(0);
 			generateStaticArrows(1);
 			for (i in 0...playerStrums.length) {
@@ -2154,7 +2152,7 @@ class PlayState extends MusicBeatState
 		var songName:String = Paths.formatToSongPath(SONG.song);
 		var file:String = Paths.json(songName + '/t');
 		#if desktop
-		if (Util.exists(Paths.modsJson(songName + '/events')) || Util.exists(file)) {
+		if (Util.exists(Paths.getPreloadPath(songName + '/events')) || Util.exists(file)) {
 		#else
 		if (OpenFlAssets.exists(file)) {
 		#end
@@ -3753,9 +3751,6 @@ for(note in groupedNotes) {
 			}
 		}
 
-    #if mobile
-    mobileControls.visible = false;
-    #end
 		timeBarBG.visible = false;
 		timeBar.visible = false;
 		timeTxt.visible = false;
@@ -3767,6 +3762,10 @@ for(note in groupedNotes) {
 
 		deathCounter = 0;
 		seenCutscene = false;
+		
+    #if mobile
+    mobileControls.visible = true;
+    #end
 
 		#if ACHIEVEMENTS_ALLOWED
 		if(achievementObj != null) {
