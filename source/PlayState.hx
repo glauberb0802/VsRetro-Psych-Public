@@ -248,11 +248,13 @@ class PlayState extends MusicBeatState
 	public var girlfriendCameraOffset:Array<Float> = null;
 	public var hideGF:Null<Bool> = null;
 
+  #if desktop
 	// Discord RPC variables
-	var storyDifficultyText:String = "";
+	var :String = "";
 	var detailsText:String = "";
 	var detailsPausedText:String = "";
 	var detailsSongName:String = "";
+	#end
 
 	//Achievement shit
 	var keysPressed:Array<Bool> = [];
@@ -523,6 +525,7 @@ class PlayState extends MusicBeatState
 
 		trace('dadskin: ' + arrowSkindad + ' | bfskin: ' + arrowSkinbf);
 
+    #if desktop
 		storyDifficultyText = Difficulty.difficulties[storyDifficulty];
 
 		// String that contains the mode defined here so it isn't necessary to call changePresence for each mode
@@ -546,6 +549,7 @@ class PlayState extends MusicBeatState
 		#if !final
 		// (neo) Remove this for release
 		//detailsSongName = "song";
+		#end
 		#end
 
 		var songName:String = formattedSong;

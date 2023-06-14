@@ -26,7 +26,7 @@ using StringTools;
 
 class OptionsState extends MusicBeatState
 {
-	var options:Array<String> = ['Note Colors', 'Controls', 'Android Controls', 'Adjust Delay and Combo', 'Graphics', 'Visuals and UI', 'Gameplay'];
+	var options:Array<String> = ['Note Colors', 'Controls', 'Adjust Delay and Combo', 'Graphics', 'Visuals and UI', 'Gameplay'];
 	private var grpOptions:FlxTypedGroup<Alphabet>;
 	private static var curSelected:Int = 0;
 	public static var menuBG:FlxSprite;
@@ -41,8 +41,6 @@ class OptionsState extends MusicBeatState
 				openSubState(new options.GraphicsSettingsSubState());
 			case 'Visuals and UI':
 				openSubState(new options.VisualsUISubState());
-			case 'Android Controls':
-				openSubState(new mobile.MobileControlsSubState());
 			case 'Gameplay':
 				openSubState(new options.GameplaySettingsSubState());
 			case 'Adjust Delay and Combo':
@@ -94,7 +92,7 @@ class OptionsState extends MusicBeatState
 		ClientPrefs.saveSettings();
 
     #if mobile
-    addVirtualPad(UP_DOWN, A_B);
+    addVirtualPad(UP_DOWN, A_B_C);
     #end
 
 		super.create();
@@ -123,6 +121,16 @@ class OptionsState extends MusicBeatState
 		if (controls.ACCEPT) {
 			openSelectedSubstate(options[curSelected]);
 		}
+	}
+	
+		#if mobile
+		if (virtualPad.buttonC.justPressed) {
+		  #if mobile 
+		  removeVirtualPad();
+		  #end
+		  openSubState(new mobile.MobileControlsSubState());
+		}
+		#end
 	}
 	
 	function changeSelection(change:Int = 0) {
