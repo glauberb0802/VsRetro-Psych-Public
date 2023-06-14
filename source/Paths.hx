@@ -450,7 +450,7 @@ class Paths
 			return currentTrackedSounds.get(gottenPath);
 		else
 		#if MODS_ALLOWED
-			currentTrackedSounds.set(gottenPath, OpenFlAssets.getSound(getPath('$path/$key.$SOUND_EXT', SOUND, library)));
+			currentTrackedSounds.set(gottenPath, Sound.fromFile(gottenPath));
 		#end
 		localTrackedAssets.push(gottenPath);
 		return currentTrackedSounds.get(gottenPath);

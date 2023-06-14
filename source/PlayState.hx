@@ -1122,7 +1122,7 @@ class PlayState extends MusicBeatState
 
 		// startCountdown();
 
-		generateSong();
+		// generateSong();
 
 		WindowTitle.progress(80);
 		
@@ -2154,7 +2154,7 @@ class PlayState extends MusicBeatState
 		var noteData:Array<SwagSection> = SONG.notes;
 
 		var songName:String = Paths.formatToSongPath(SONG.song);
-		var file:String = Paths.json(songName + '/t');
+		var file:String = Paths.json(songName + '/events');
 		#if desktop
 		if (Util.exists(Paths.getPreloadPath(songName + '/events')) || Util.exists(file)) {
 		#else
