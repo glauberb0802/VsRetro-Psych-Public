@@ -10,7 +10,7 @@ import flixel.util.FlxColor;
 import flixel.util.FlxTimer;
 import flixel.group.FlxGroup.FlxTypedGroup;
 
-class MinusEndingState extends MusicBeatSubState {
+class MinusEndingState extends MusicBeatState {
 	var minusEndBG:FlxSprite;
 	var minusEndingGroup:FlxTypedGroup<FlxSprite>;
 	var minusCardGroup:FlxTypedGroup<FlxSprite>;
