@@ -26,7 +26,7 @@ using StringTools;
 
 class OptionsState extends MusicBeatState
 {
-	var options:Array<String> = ['Note Colors', 'Controls', 'Unlock All Songs', 'Adjust Delay and Combo', 'Graphics', 'Visuals and UI', 'Gameplay'];
+	var options:Array<String> = ['Note Colors', 'Controls', 'Debug Mode', 'Adjust Delay and Combo', 'Graphics', 'Visuals and UI', 'Gameplay'];
 	private var grpOptions:FlxTypedGroup<Alphabet>;
 	private static var curSelected:Int = 0;
 	public static var menuBG:FlxSprite;
@@ -48,7 +48,10 @@ class OptionsState extends MusicBeatState
 		  	removeVirtualPad();
 		  	#end
 				openSubState(new options.GraphicsSettingsSubState());
-			case 'Unlock All Songs':
+			case 'Debug Mode':
+		  	#if mobile
+		  	removeVirtualPad();
+		  	#end
 				openSubState(new UnlocksDebug());
 			case 'Visuals and UI':
 		  	#if mobile
