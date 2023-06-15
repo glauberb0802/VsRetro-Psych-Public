@@ -591,11 +591,11 @@ class FreeplayState extends UnlockableMusicBeatState
 			FlxG.sound.play(Paths.sound('cancelMenu'));
 			MusicBeatState.switchState(new MainMenuState());
 		}
-		else if (controls.CHANGE_BF #if mobile virtualPad.buttonC.justPressed #end && Unlocks.hasUnlockedSong(songs[curSelected].songName))
+		else if (controls.CHANGE_BF #if mobile (virtualPad.buttonC.justPressed) #end && Unlocks.hasUnlockedSong(songs[curSelected].songName))
 			changeChar();
-		else if (controls.CHANGE_GF #if mobile virtualPad.buttonX.justPressed #end && Unlocks.hasUnlockedSong(songs[curSelected].songName))
+		else if (controls.CHANGE_GF #if mobile (virtualPad.buttonX.justPressed) #end && Unlocks.hasUnlockedSong(songs[curSelected].songName))
 			changeGf();
-		else if (controls.CHANGE_FOE #if mobile virtualPad.buttonY.justPressed #end && Unlocks.hasUnlockedSong(songs[curSelected].songName))
+		else if (controls.CHANGE_FOE #if mobile (virtualPad.buttonY.justPressed) #end && Unlocks.hasUnlockedSong(songs[curSelected].songName))
 			changeFoe();
 
 		if(ctrl)
