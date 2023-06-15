@@ -69,10 +69,6 @@ class GameOverSubstate extends MusicBeatSubstate
 		instance = this;
 		PlayState.instance.callOnLuas('onGameOverStart', []);
 
-    #if mobile
-    addVirtualPad(NONE, A_B);
-    #end
-
 		super.create();
 	}
 
@@ -327,6 +323,10 @@ class GameOverSubstate extends MusicBeatSubstate
 			hintText.completeCallback = function()
 			{
 				disableInput = false;
+	    	#if mobile
+	    	addVirtualPad(NONE, A_B);
+		    addVirtualPadCamera(false);
+	    	#end
 			}
 		}
 	}

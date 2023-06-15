@@ -1233,7 +1233,8 @@ class PlayState extends MusicBeatState
 		timeTxt.cameras = [camHUD];
 		
 		#if mobile
-		addMobileControls();
+		addMobileControls(false);
+    mobileControls.visible = false;
 		#end
 		
 		//if(!doof.noDialogue) doof.cameras = [camHUD];
@@ -1862,9 +1863,9 @@ class PlayState extends MusicBeatState
 		var ret:Dynamic = callOnLuas('onStartCountdown', []);
 		if(ret != FunkinLua.Function_Stop) {
 			if (skipCountdown || startOnTime > 0) skipArrowStartTween = true;
-    #if mobile
-    mobileControls.visible = true;
-    #end
+      #if mobile
+      mobileControls.visible = true;
+      #end
 			generateStaticArrows(0);
 			generateStaticArrows(1);
 			for (i in 0...playerStrums.length) {
@@ -3737,6 +3738,9 @@ for(note in groupedNotes) {
 	public var transitioning = false;
 	public function endSong():Void
 	{
+    #if mobile
+    mobileControls.visible = false;
+    #end
 		//Should kill you if you tried to cheat
 		if(!startingSong) {
 			notes.forEach(function(daNote:Note) {
@@ -3766,10 +3770,6 @@ for(note in groupedNotes) {
 
 		deathCounter = 0;
 		seenCutscene = false;
-		
-    #if mobile
-    mobileControls.visible = true;
-    #end
 
 		#if ACHIEVEMENTS_ALLOWED
 		if(achievementObj != null) {
