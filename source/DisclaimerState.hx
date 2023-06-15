@@ -191,13 +191,13 @@ class DisclaimerState extends FlxState
 		   }
 		 #end
 
-			if ((FlxG.keys.justPressed.LEFT || PlayerSettings.player1.controls.UI_LEFT_P #if mobile || justTouched #end) && selectSprite.x == 660)
+			if ((FlxG.keys.justPressed.LEFT || PlayerSettings.player1.controls.UI_LEFT_P) && selectSprite.x == 660)
 			{
 				FlxG.sound.play(Paths.sound('scrollMenu'), 0.4);
 				selectSprite.x = 460;
 				isFlashing = true;
 			}
-			else if ((FlxG.keys.justPressed.RIGHT || PlayerSettings.player1.controls.UI_RIGHT_P #if mobile || justTouched #end) && selectSprite.x == 460)
+			else if ((FlxG.keys.justPressed.RIGHT || PlayerSettings.player1.controls.UI_RIGHT_P) && selectSprite.x == 460)
 			{
 				FlxG.sound.play(Paths.sound('scrollMenu'), 0.4);
 				selectSprite.x = 660;
