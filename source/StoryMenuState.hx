@@ -987,11 +987,14 @@ class StoryMenuState extends UnlockableMusicBeatState
 				{
 					changeMenu(true);
 				}
-
 				else if (controls.BACK)
 				{
 					FlxG.sound.play(Paths.sound('cancelMenu'));
 					movedBack = true;
+				}
+        else if (FlxG.android.justReleased.BACK)
+        {
+          FlxG.stage.window.textInputEnabled = true;
 
 					// Keep the current theme going
 					if (TitleState.introMusic == null || !TitleState.introMusic.playing)

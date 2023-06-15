@@ -132,7 +132,7 @@ class GraphicsSettingsSubState extends BaseOptionsMenu
 			'If checked, fully disables shaders affecting notes.',
 			'optimizedNotes',
 			'bool',
-			true);
+			false);
 		//option.id = "chromatic";
 		addOption(option);
 

@@ -17,7 +17,7 @@ class ClientPrefs {
 	public static var optimize:Bool = false;
 	public static var background:Int = 2; 
 	public static var particles:Bool = true; 
-	public static var optimizedNotes:Bool = true;
+	public static var optimizedNotes:Bool = false;
 	public static var modcharts:Bool = true;
 	public static var precachedDeaths:Bool = false;
 	public static var cacheStory:Bool = false;
@@ -66,7 +66,7 @@ class ClientPrefs {
 	public static var controllerMode:Bool = true;
 	public static var hitsoundVolume:Float = 0;
 	public static var pauseMusic:String = 'Tea Time';
-	public static var healthSystem:String = 'Kade';
+	public static var healthSystem:String = 'Psych';
 	public static var inputSystem:String = 'Psych';
 	public static var gameplaySettings:Map<String, Dynamic> = [
 		'scrollspeed' => 1.0,

@@ -116,7 +116,7 @@ class GameplaySettingsSubState extends BaseOptionsMenu
 			"Which input system the game should use, changes some difficulty",
 			'inputSystem',
 			'string',
-			'Kade',
+			'Psych',
 			['Kade', 'Psych']);
 		addOption(option);
 
@@ -124,7 +124,7 @@ class GameplaySettingsSubState extends BaseOptionsMenu
 			"Which health system the game should use, changes some difficulty",
 			'healthSystem',
 			'string',
-			'Kade',
+			'Psych',
 			['Kade', 'Psych']);
 		addOption(option);
 

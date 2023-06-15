@@ -128,7 +128,7 @@ class MinusEndingState extends FlxSubState {
 		minusEndingDescription5.screenCenter(X);
 		minusEndingGroup.add(minusEndingDescription5);
 
-		var continueText = new FlxText(900, 680, 0, "Press Enter to continue", 24);
+		var continueText = new FlxText(900, 680, 0, "Press BACK of your phone to continue", 24);
 		continueText.setFormat(Paths.font("vcr.ttf"), 24, FlxColor.WHITE);
 		continueText.alpha = 0;
 		minusEndingGroup.add(continueText);
@@ -147,8 +147,19 @@ class MinusEndingState extends FlxSubState {
 		super.create();
 	}
 
-	override function update(elapsed:Float) {
-		if (FlxG.keys.justPressed.ENTER #if mobile || FlxG.android.justReleased.BACK #end) {
+	override function update(elapsed:Float) 
+	{
+	  #if mobile
+    var justTouched:Bool = false;
+		for (touch in FlxG.touches.list)
+		  {
+		  	if (touch.justPressed)
+			   {
+				   justTouched = true;
+			   }
+		   }
+		 #end
+		if (FlxG.keys.justPressed.ENTER #if mobile || justTouched #end) {
 			if (enterPressedOnce/* || PlayState.finishedMinus*/) {
 				//SaveDataManager.instance.endingData.setFinishedMinusFlag(true);
 				if(FlxG.sound.music != null) {
