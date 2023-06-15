@@ -30,7 +30,9 @@ class UnlocksDebug extends BaseOptionsMenu
 {
 	public function new()
 	{
+	  #if desktop
 		doRPC = false;
+		#end
 		hasBG = false;
 		title = 'Unlock Debug Screen';
 		//rpcTitle = 'Gameplay Settings Menu'; //for Discord Rich Presence

@@ -147,7 +147,7 @@ class GraphicsSettingsSubState extends BaseOptionsMenu
 			'If checked, reduces the time between loading songs, at the cost of more RAM usage and loading time',
 			'cacheStory',
 			'bool',
-			true);
+		false);
 		addOption(option);
 
 		super();
