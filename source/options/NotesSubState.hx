@@ -358,7 +358,11 @@ class NotesSubState extends MusicBeatSubstate
 				camFollowPos.setPosition(origCamFollow.x, origCamFollow.y);
 				FlxG.camera.follow(null, null, 1);
 				FlxG.camera.scroll.copyFrom(origCamFollow);
-				close();
+		    #if mobile
+        FlxG.resetState();
+        #else
+		  	close();
+		  	#end
 			} else {
 				changeSelection();
 			}

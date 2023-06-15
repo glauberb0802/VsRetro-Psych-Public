@@ -357,6 +357,7 @@ class NoteOffsetState extends MusicBeatState
 
 			persistentUpdate = false;
 			CustomFadeTransition.nextCamera = camOther;
+      FlxG.resetState();
 			MusicBeatState.switchState(new options.OptionsState());
 			if (MainMenuState.songName.startsWith('Intro')) MainMenuState.songName = MainMenuState.songName.replace('Intro', 'Menu');
 			FlxG.sound.playMusic(Paths.music(MainMenuState.songName),1,true);
