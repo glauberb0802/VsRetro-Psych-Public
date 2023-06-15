@@ -991,6 +991,10 @@ class StoryMenuState extends UnlockableMusicBeatState
 				{
 					FlxG.sound.play(Paths.sound('cancelMenu'));
 					movedBack = true;
+				}
+        else if (virtualPad.buttonC.justPressed)
+        {
+          FlxG.stage.window.textInputEnabled = true;
 
 					// Keep the current theme going
 					if (TitleState.introMusic == null || !TitleState.introMusic.playing)
@@ -2926,21 +2930,18 @@ class StoryMenuState extends UnlockableMusicBeatState
 					uniqueUnlockText = "You've unlocked another secret song in Freeplay.";
 
 					FlxTween.tween(unlockFadeBG, {alpha: 0.9}, 0.5);
-					
-        #if mobile
-         if (virtualPad.buttonC.justPressed) {
-             Unlocks.unlock(SONG, 'Heartmelter');
-             Unlocks.setNew(SONG, 'Heartmelter');
-             displayUnlocks();
-             return true;
-            }
-        #else
-            Unlocks.unlock(SONG, 'Heartmelter');
-            Unlocks.setNew(SONG, 'Heartmelter');
-            displayUnlocks();
-            return true;
-        #end
-    }
+
+					Unlocks.unlock(SONG, 'Heartmelter');
+					Unlocks.setNew(SONG, 'Heartmelter');
+					//saveDataManager.unlockData.unlockSong('Heartmelter');
+					//saveDataManager.newContent.setFreeplayFlag(true, saveDataManager.unlockData.getSongIndex('Heartmelter'));
+
+					displayUnlocks();
+					return true;
+				}
+				else
+					return false;
+		}
 
 		return false;
 	}
