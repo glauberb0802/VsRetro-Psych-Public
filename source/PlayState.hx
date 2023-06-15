@@ -1122,7 +1122,7 @@ class PlayState extends MusicBeatState
 
 		// startCountdown();
 
-		// generateSong();
+		generateSong();
 
 		WindowTitle.progress(80);
 		
