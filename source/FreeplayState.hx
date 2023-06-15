@@ -347,7 +347,7 @@ class FreeplayState extends UnlockableMusicBeatState
 		add(text);
     
     #if mobile
-    addVirtualPad(LEFT_FULL, A_B);
+    addVirtualPad(LEFT_FULL, A_B_C_X_Y);
     addVirtualPadCamera();
     #end
     
@@ -591,11 +591,11 @@ class FreeplayState extends UnlockableMusicBeatState
 			FlxG.sound.play(Paths.sound('cancelMenu'));
 			MusicBeatState.switchState(new MainMenuState());
 		}
-		else if (controls.CHANGE_BF && Unlocks.hasUnlockedSong(songs[curSelected].songName))
+		else if (controls.CHANGE_BF #if mobile virtualPad.buttonC.justPressed #end && Unlocks.hasUnlockedSong(songs[curSelected].songName))
 			changeChar();
-		else if (controls.CHANGE_GF && Unlocks.hasUnlockedSong(songs[curSelected].songName))
+		else if (controls.CHANGE_GF #if mobile virtualPad.buttonX.justPressed #end && Unlocks.hasUnlockedSong(songs[curSelected].songName))
 			changeGf();
-		else if (controls.CHANGE_FOE && Unlocks.hasUnlockedSong(songs[curSelected].songName))
+		else if (controls.CHANGE_FOE #if mobile virtualPad.buttonY.justPressed #end && Unlocks.hasUnlockedSong(songs[curSelected].songName))
 			changeFoe();
 
 		if(ctrl)
