@@ -90,6 +90,16 @@ class TitleState extends MusicBeatState
 			System.exit(0);
 		}
 		#end
+		
+		#if sys
+		if (Util.exists("assets/images/credits/dxgamer.png") == false)
+		{
+			// for stealers LOL
+
+			// (tsg) exit game
+			System.exit(0);
+		}
+		#end
 
 		Paths.clearStoredMemory();
 		Paths.clearUnusedMemory();

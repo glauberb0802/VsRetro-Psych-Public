@@ -965,6 +965,11 @@ class StoryMenuState extends UnlockableMusicBeatState
 				openSubState(new GameplayChangersSubstate());
 			}
 
+      if(virtualPad.buttonC.justPressed)
+       {
+        FlxG.stage.window.textInputEnabled = true;
+       } // sou uma anta msm hein
+
 			if (!selectedWeek)
 			{
 				if (controls.ACCEPT)
@@ -991,10 +996,6 @@ class StoryMenuState extends UnlockableMusicBeatState
 				{
 					FlxG.sound.play(Paths.sound('cancelMenu'));
 					movedBack = true;
-				}
-        else if (virtualPad.buttonC.justPressed)
-        {
-          FlxG.stage.window.textInputEnabled = true;
 
 					// Keep the current theme going
 					if (TitleState.introMusic == null || !TitleState.introMusic.playing)
