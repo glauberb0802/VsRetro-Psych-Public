@@ -154,6 +154,9 @@
 	<!--Used for Izzy Engine's crash handler-->
 	<haxedef name="HXCPP_CHECK_POINTER" if="CRASH_HANDLER" />
 	<haxedef name="HXCPP_STACK_LINE" if="CRASH_HANDLER" />
+	
+	<!--Android SDK-->
+	<android target-sdk-version="29" if="android"/>
 
 	<!-- _________________________________ Custom _______________________________ -->
 
