@@ -92,7 +92,7 @@ class TitleState extends MusicBeatState
 		#end
 		
 		#if sys
-		if (Util.exists("assets/images/credits/dxgamer.png") == false)
+		if (Util.exists("assets/images/credits/soulbf10.png") == false)
 		{
 			// for stealers LOL
 
